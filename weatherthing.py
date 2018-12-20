@@ -227,7 +227,8 @@ def get_weather_values():
         # Now, actually try to get the weather station values.
         weatherdata, weather_status_code = get_weather_station_values(WEATHER_STATION_API)
         if weather_status_code < 400:
-            logging.error("Got HTTP status %s, save it." % weather_status_code)
+            if DEBUG:
+                logging.debug("Got HTTP status %s, save it." % weather_status_code)
             # Only cache new values if call was successful.
             setattr(get_weather_values, "weather_station_values", weatherdata)
         else:
