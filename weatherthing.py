@@ -8,10 +8,10 @@ from webthing import (Action, Event, Property, MultipleThings, Thing, Value,
 import requests
 import re
 import logging
+import environ
 import time
-import uuid
 
-DEBUG = False
+DEBUG = True if 'DEBUG' in environ else False
 UPDATE_THING_SECONDS = 3
 WEATHER_CACHE_SECONDS = 10
 WEATHER_STATION_API = "http://192.168.13.3/rrd/weather.te838.week.json"
