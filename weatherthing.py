@@ -95,7 +95,7 @@ class PressureSensor(Thing):
                      }))
 
         if DEBUG:
-            logging.debug("starting the %s barometer update looping task" % self.location_name)
+            logging.debug("starting the %s barometer update looping task", self.location_name)
         self.sensor_update_task = \
             get_event_loop().create_task(self.update_level())
 
@@ -162,7 +162,7 @@ class TemperatureSensor(Thing):
                          }))
 
         if DEBUG:
-            logging.debug("starting the sensor update looping task")
+            logging.debug("starting the %s temperature sensor update looping task", self.location_name)
         self.sensor_update_task = \
             get_event_loop().create_task(self.update_level())
 
@@ -270,6 +270,14 @@ def run_server():
     except KeyboardInterrupt:
         logging.debug("canceling the sensor update looping task")
         in_hygro.cancel_update_level_task()
+        out_hygro.cancel_update_level_task()
+        in_temp.cancel_update_level_task()
+        out_temp.cancel_update_level_task()
+        office_temp.cancel_update_level_task()
+        kitchen_temp.cancel_update_level_task()
+        bathroom_temp.cancel_update_level_task()
+        bedroom_temp.cancel_update_level_task()
+        baro.cancel_update_level_task()
         logging.info("stopping the server")
         server.stop()
         logging.info("done")
