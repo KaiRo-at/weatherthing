@@ -52,7 +52,7 @@ class HumiditySensor(Thing):
         try:
             while True:
                 await sleep(UPDATE_THING_SECONDS)
-                weathervalues = get_weather_values();
+                weathervalues = get_weather_values()
                 new_level = weathervalues["%s_hygro" % self.data_prefix] if weathervalues else None
                 if DEBUG:
                     logging.debug("setting new %s humidity level: %s", self.location_name, new_level)
@@ -103,7 +103,7 @@ class PressureSensor(Thing):
         try:
             while True:
                 await sleep(UPDATE_THING_SECONDS)
-                weathervalues = get_weather_values();
+                weathervalues = get_weather_values()
                 new_level = weathervalues[self.data_name] if weathervalues else None
                 if DEBUG:
                     logging.debug("setting new %s air pressure level: %s", self.location_name, new_level)
@@ -170,7 +170,7 @@ class TemperatureSensor(Thing):
         try:
             while True:
                 await sleep(UPDATE_THING_SECONDS)
-                weathervalues = get_weather_values();
+                weathervalues = get_weather_values()
                 new_temp = weathervalues["%s_temp" % self.data_prefix] if weathervalues else None
                 if DEBUG:
                     logging.debug("setting new %s temperature: %s", self.location_name, new_temp)
