@@ -23,6 +23,7 @@ class HumiditySensor(Thing):
         self.location_name = location_name
         self.data_prefix = data_prefix
         Thing.__init__(self,
+                       "urn:weather:humid:%s" % self.data_prefix,
                        "%s Humidity Sensor" % self.location_name.title(),
                        ["MultiLevelSensor"],
                        "The humidity sensor in %s" % self.location_name)
@@ -74,6 +75,7 @@ class PressureSensor(Thing):
         self.location_name = location_name
         self.data_name = data_name
         Thing.__init__(self,
+                       "urn:weather:baro:%s" % self.location_name,
                        "%s Barometer" % self.location_name.title(),
                        ["MultiLevelSensor"],
                        "The barometer (air pressure sensor) in %s" % self.location_name)
@@ -126,6 +128,7 @@ class TemperatureSensor(Thing):
         self.data_prefix = data_prefix
         self.has_humidity = has_humidity
         Thing.__init__(self,
+                       "urn:weather:temp:%s" % self.data_prefix,
                        "%s Temperature Sensor" % self.location_name.title(),
                        ["TemperatureSensor"],
                        "The temperature sensor in %s" % self.location_name)
